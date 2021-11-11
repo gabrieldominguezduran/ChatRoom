@@ -87,6 +87,6 @@ test:
 #
 production:
   <<: *default
-  database: chatroom_production
-  username: chatroom
-  password: <%= ENV['CHATROOM_DATABASE_PASSWORD'] %>
+  database: <%= ENV['DATABASE_URL'] %>
+  # username: chatroom
+  # password: <%= ENV['CHATROOM_DATABASE_PASSWORD'] %>
