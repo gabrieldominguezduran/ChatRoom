@@ -1,11 +1,21 @@
 @import "bootstrap";
 
-html {
-  box-sizing: border-box;
-}
+/**
+ * Import variables
+ */
 
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
+@import "variables";
+
+/**
+  * Import mixins
+  */
+
+@import "mixins";
+
+/**
+  * Import layouts
+  */
+
+@import "layouts/navbar";
+@import "layouts/home";
+@import "layouts/welcome.scss";

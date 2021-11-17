@@ -1,0 +1,60 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+  width: 100vw;
+  line-height: 1.6;
+  background-color: $bg-color;
+}
+
+.landing {
+  @include flex;
+  margin: 2rem;
+
+  @media (min-width: 992px) {
+    @include grid;
+    .landing__img {
+      width: 100%;
+      margin-top: 5rem;
+    }
+
+    .landing__text {
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+    }
+
+    .landing__img-container {
+      grid-column: 2 / 4;
+      justify-self: end;
+      width: 100%;
+    }
+  }
+}
+
+.landing__text {
+  font-family: PoiretOne-Regular;
+  font-size: 3rem;
+  margin-top: 2rem;
+}
+
+.landing__img-container,
+.landing__img {
+  width: 100%;
+}

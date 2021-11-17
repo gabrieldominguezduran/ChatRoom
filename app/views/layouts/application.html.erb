@@ -11,11 +11,9 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-  <div class="container">
+  <body class="container">
     <%= render partial: "shared/navbar" %>
     <p class="alert"><%= alert %></p>
     <%= yield %>
-  </div>
   </body>
 </html>

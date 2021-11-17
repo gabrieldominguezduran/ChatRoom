@@ -1,0 +1,24 @@
+.navbar,
+.navbar-brand,
+.nav-link {
+  font-family: "Poppins-Bold";
+  color: $primary-color;
+}
+
+.navbar-toggler {
+  padding: 0;
+  border-color: $primary-color;
+}
+
+.nav-link {
+  font-size: 1.4rem;
+  margin-right: 1.2rem;
+}
+.navbar-brand {
+  font-size: 3rem;
+}
+
+.nav-link:hover,
+.navbar-brand:hover {
+  color: $secondary-color;
+}
