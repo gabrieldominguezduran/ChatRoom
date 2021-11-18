@@ -1,38 +1,33 @@
-<div class="container register">
-<form class="d-flex">
-  <button class="btn btn-light mx-2 p-1" type="submit"><%= render "devise/shared/links" %></button>
-</form>
-<h4 class="text-center">Please sign up</h4>
+  <main class="landing forms">
+   <div class="container register">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="form-group">
+        <%= f.text_field :username, autofocus: true, autocomplete: "name", placeholder: 'username', class: "form-control  register__input" %>
+      </div>
 
-  <div class="form-group">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true, autocomplete: "name", class: "form-control" %>
-  </div>
+      <div class="form-group">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'email', class: "form-control  register__input" %>
+      </div>
 
-  <div class="form-group">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-  </div>
+      <div class="form-group">
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: 'Password', class: "form-control  register__input" %>
+      </div>
 
-  <div class="form-group">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
-  </div>
+      <div class="form-group">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'Confirm password',class: "form-control  register__input"  %>
+      </div>
 
-  <div class="form-group">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password",class: "form-control"  %>
-  </div>
+      <div class="actions text-center">
+        <%= f.submit "Sign up", class: "btn btn-default my-2" %>
+      </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up", class: "btn btn-success my-2" %>
-  </div>
-<% end %>
- 
-</div>
+    <% end %>
+    
+    </div>
+      <div class="new_user__img-container">
+        <%= image_tag('sign_up_page.svg', :class => "new_user__img-signup", alt: "SVG image") %>
+      </div>
+
+    </main>
