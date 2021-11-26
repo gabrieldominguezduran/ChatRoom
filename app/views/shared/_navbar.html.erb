@@ -1,14 +1,16 @@
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
+  <% if current_user%>
+  <h1 class="navbar-brand pt-3">ChatRoom</h1>
+  <% else %>
   <%= link_to 'ChatRoom', '/', class: 'navbar-brand'%>
+  <% end %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
       <div class="navbar-nav">
       <% if current_user%>
-        <%= link_to 'Rooms', '/', class: 'nav-link'%>
-        <%= link_to 'Profile', '/', class: 'nav-link'%>
         <%= link_to 'Sign out', destroy_user_session_path, class: 'nav-link', method: :delete %>
       <% else %>
         <%= link_to 'About', about_path, class: 'nav-link'%>
