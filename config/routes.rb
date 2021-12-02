@@ -7,4 +7,6 @@ authenticated :user do
 end
   get '/' => "home#index"
   get '/about' => 'home#about'
+  get '/profile' => 'welcome#load_profile'
+  post '/update_profile' => 'welcome#update_profile'
 end

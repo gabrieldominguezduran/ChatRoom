@@ -1,0 +1,24 @@
+.chat {
+  background-color: #eee;
+
+  &__card {
+    background-color: $primary-color;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+
+  &__img {
+    width: 45px;
+    height: 100%;
+  }
+
+  &__msg {
+    border-radius: 15px;
+    background-color: $secondary-color;
+  }
+
+  &__my-msg {
+    border-radius: 15px;
+    background-color: #fbfbfb;
+  }
+}

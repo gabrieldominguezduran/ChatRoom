@@ -1,42 +1,92 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-location";
 
 import profileIMg from "../../assets/images/profile_page";
 export default function Profile() {
+  const [user, setUser] = useState({
+    username: "",
+    email: "",
+  });
+
+  useEffect(() => {
+    const url = "/profile.json";
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        setUser(data);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const onChangeHandler = (e) => {
+    const value = e.target.value;
+    const name = e.target.name;
+    setUser({
+      ...user,
+      [name]: value,
+    });
+  };
+
+  const updateUser = async (e) => {
+    e.preventDefault();
+    const data = { user };
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    };
+    try {
+      const response = await fetch(`/update_profile`, requestOptions);
+      const res = await response.json();
+      setUser(res);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
   return (
     <main className="profile">
       <div className="container profile__form">
-        <Link to="/" className="nav-link">
-          Home
-        </Link>
         <form className="form">
           <div className="form-group">
+            <label htmlFor="username">Username</label>
             <input
               className="form-control profile__input"
               type="text"
               name="username"
+              value={user.username}
+              onChange={onChangeHandler}
             />
           </div>
 
           <div className="form-group">
+            <label htmlFor="email">Email</label>
             <input
               className="form-control profile__input"
               type="email"
               name="email"
-            />
-          </div>
-
-          <div className="form-group">
-            <input
-              className="form-control profile__input"
-              type="password"
-              name="password"
-              id=""
+              value={user.email}
+              onChange={onChangeHandler}
             />
           </div>
 
           <div className="actions text-center">
-            <button className="btn btn-default my-2">Update</button>
+            <button
+              type="button"
+              className="btn btn-default my-2"
+              onClick={updateUser}
+            >
+              Update
+            </button>
+            <Link to="/" className="nav-link mx-0">
+              Home
+            </Link>
           </div>
         </form>
       </div>

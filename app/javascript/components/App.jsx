@@ -1,5 +1,11 @@
 import React from "react";
-import { Router, Route, Outlet, ReactLocation } from "react-location";
+import {
+  Router,
+  Route,
+  Outlet,
+  ReactLocation,
+  createHashHistory,
+} from "react-location";
 
 import Home from "./Home";
 import Profile from "./Profile";
@@ -15,7 +21,11 @@ const routes = [
   },
 ];
 
-const location = new ReactLocation();
+const hashHistory = createHashHistory();
+
+const location = new ReactLocation({
+  history: hashHistory,
+});
 
 export default function App() {
   return (
