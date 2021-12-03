@@ -14,9 +14,27 @@ class WelcomeController < ApplicationController
     render json: current_user.as_json(:only => [:username, :email])    
   end
 
+  def load_rooms
+    rooms =  Room.all
+    render json: rooms.as_json(:only => [:id, :admin_id, :name])
+  end
+
+  def create_room
+    room = Room.create!({
+      :admin_id => current_user.id,
+      :name => params[:room]
+    })
+      rooms = Room.all
+      render json: rooms.as_json(:only => [:id, :admin_id, :name])
+  end
+
   private
 
   def user_params
     params.require(:user).permit(:username, :email)
+  end
+
+  def room_params
+    params.require(:room).permit(:admin_id, :name)
   end
 end

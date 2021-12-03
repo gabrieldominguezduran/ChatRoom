@@ -9,20 +9,19 @@ export default function Profile() {
   });
 
   useEffect(() => {
-    const url = "/profile.json";
-
-    const fetchData = async () => {
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        setUser(data);
-      } catch (error) {
-        console.log("error", error);
-      }
-    };
-
     fetchData();
   }, []);
+
+  const fetchData = async () => {
+    const url = "/profile.json";
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setUser(data);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
 
   const onChangeHandler = (e) => {
     const value = e.target.value;

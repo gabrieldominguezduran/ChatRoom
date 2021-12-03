@@ -21,4 +21,12 @@
     border-radius: 15px;
     background-color: #fbfbfb;
   }
+
+  &__text {
+    font-family: Poppins-Bold;
+    font-size: 1.3rem;
+    color: $primary-color;
+    text-align: center;
+    margin: 3rem auto;
+  }
 }

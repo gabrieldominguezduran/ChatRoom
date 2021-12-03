@@ -1,3 +1,17 @@
 .rooms {
   height: 100vh;
 }
+
+.title {
+  font-size: 1.3rem;
+  font-family: Poppins-Bold;
+  text-align: center;
+  color: $primary-color;
+}
+
+.text {
+  font-family: Poppins-Bold;
+  color: $primary-color;
+  text-align: center;
+  cursor: pointer;
+}
