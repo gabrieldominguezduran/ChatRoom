@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :rooms, foreign_key: "admin_id", class_name: "Room"
+
+  has_many :messages
 end

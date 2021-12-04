@@ -44,39 +44,88 @@ export default function Rooms() {
     setActiveRoom(room);
   };
   return (
-    <section className="card room col-md-12 col-lg-2">
-      <div className="card-header  title">Rooms</div>
-      <ul className="list-group list-group-flush">
-        {rooms.map((r) => {
-          return (
-            <li
-              key={r.id}
-              className="list-group-item text"
-              onClick={() => getRoomId(r.id)}
-            >
-              {r.name}
-            </li>
-          );
-        })}
-      </ul>
-      <form className="d-flex flex-column justify-content-center">
-        <div className="form-group">
-          <input
-            className="form-control profile__input"
-            type="text"
-            name="room"
-            value={room}
-            onChange={(e) => setRoom(e.target.value)}
-          />
+    <>
+      <section className="card mobile col-md-12 col-lg-2">
+        <div className="dropdown">
+          <button
+            className="btn dropdown-toggle card-header title w-100"
+            type="button"
+            id="dropdownMenuButton2"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Rooms
+          </button>
+          <ul
+            className="dropdown-menu w-100"
+            aria-labelledby="dropdownMenuButton2"
+          >
+            {rooms.map((r) => {
+              return (
+                <li
+                  key={r.id}
+                  className="list-group-item text"
+                  onClick={() => getRoomId(r.id)}
+                >
+                  {r.name}
+                </li>
+              );
+            })}
+            <form className="d-flex flex-column justify-content-center">
+              <div className="form-group">
+                <input
+                  className="form-control profile__input w-50 my-2"
+                  type="text"
+                  name="room"
+                  value={room}
+                  onChange={(e) => setRoom(e.target.value)}
+                />
+              </div>
+              <button
+                type="submit"
+                className="btn btn-default my-2 w-sm-50 mx-auto"
+                onClick={createRoom}
+              >
+                Add new
+              </button>
+            </form>
+          </ul>
         </div>
-        <button
-          type="submit"
-          className="btn btn-default my-2 w-sm-50 mx-auto"
-          onClick={createRoom}
-        >
-          Add new
-        </button>
-      </form>
-    </section>
+      </section>
+      <section className="card desktop col-md-12 col-lg-2">
+        <div className="card-header  title">Rooms</div>
+        <ul className="list-group list-group-flush">
+          {rooms.map((r) => {
+            return (
+              <li
+                key={r.id}
+                className="list-group-item text"
+                onClick={() => getRoomId(r.id)}
+              >
+                {r.name}
+              </li>
+            );
+          })}
+        </ul>
+        <form className="d-flex flex-column justify-content-center">
+          <div className="form-group">
+            <input
+              className="form-control profile__input"
+              type="text"
+              name="room"
+              value={room}
+              onChange={(e) => setRoom(e.target.value)}
+            />
+          </div>
+          <button
+            type="submit"
+            className="btn btn-default my-2 w-sm-50 mx-auto"
+            onClick={createRoom}
+          >
+            Add new
+          </button>
+        </form>
+      </section>
+    </>
   );
 }

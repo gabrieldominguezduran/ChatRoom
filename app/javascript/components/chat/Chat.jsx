@@ -3,7 +3,7 @@ import { RoomContext } from "../RoomContext";
 
 export default function Chat() {
   const { activeRoom } = useContext(RoomContext);
-  console.log(activeRoom);
+
   return (
     <section className="chat col-md-12 col-lg-5 col-xl-4">
       {activeRoom ? (
@@ -52,14 +52,19 @@ export default function Chat() {
               <textarea
                 className="form-control"
                 id="textAreaExample"
-                rows="4"
+                rows="3"
                 placeholder="Type your message"
               ></textarea>
+              <div className="d-flex justify-content-end">
+                <button className="btn btn-default my-1" type="button">
+                  Send
+                </button>
+              </div>
             </div>
           </div>
         </div>
       ) : (
-        <h1 className="chat__text">Open or create one room</h1>
+        <h1 className="chat__text py-5">Open or create one room</h1>
       )}
     </section>
   );
