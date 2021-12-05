@@ -60,17 +60,21 @@ export default function Rooms() {
             className="dropdown-menu w-100"
             aria-labelledby="dropdownMenuButton2"
           >
-            {(rooms || []).map((r) => {
-              return (
-                <li
-                  key={r.id}
-                  className="list-group-item text"
-                  onClick={() => getRoomId(r.id)}
-                >
-                  {r.name}
-                </li>
-              );
-            })}
+            {rooms ? (
+              (rooms || []).map((r) => {
+                return (
+                  <li
+                    key={r.id}
+                    className="list-group-item text"
+                    onClick={() => getRoomId(r.id)}
+                  >
+                    {r.name}
+                  </li>
+                );
+              })
+            ) : (
+              <li>No rooms yet</li>
+            )}
             <form className="d-flex flex-column justify-content-center">
               <div className="form-group">
                 <input
@@ -95,17 +99,21 @@ export default function Rooms() {
       <section className="card desktop col-md-12 col-lg-2">
         <div className="card-header  title">Rooms</div>
         <ul className="list-group list-group-flush">
-          {(rooms || []).map((r) => {
-            return (
-              <li
-                key={r.id}
-                className="list-group-item text"
-                onClick={() => getRoomId(r.id)}
-              >
-                {r.name}
-              </li>
-            );
-          })}
+          {rooms ? (
+            (rooms || []).map((r) => {
+              return (
+                <li
+                  key={r.id}
+                  className="list-group-item text"
+                  onClick={() => getRoomId(r.id)}
+                >
+                  {r.name}
+                </li>
+              );
+            })
+          ) : (
+            <li>No rooms yet</li>
+          )}
         </ul>
         <form className="d-flex flex-column justify-content-center">
           <div className="form-group">
