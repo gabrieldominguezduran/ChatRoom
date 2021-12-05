@@ -36,8 +36,8 @@ class WelcomeController < ApplicationController
       :body => params[:message]
     })
       ActionCable.server.broadcast "room:#{room.id}", {room: room.as_json(:only => [:id, :admin_id, :name], :include => :messages)}
-      rooms = Room.all
-      render json: rooms.as_json(:only => [:id, :admin_id, :name], :include => :messages)
+    
+      render json: room.as_json(:only => [:id, :admin_id, :name], :include => :messages)
   end
 
   private

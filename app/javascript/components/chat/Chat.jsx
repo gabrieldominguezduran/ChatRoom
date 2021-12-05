@@ -25,7 +25,9 @@ export default function Chat() {
     try {
       const response = await fetch(`/create_msg`, requestOptions);
       const res = await response.json();
-      console.log(res);
+      const room = res.find((id) => id == id);
+      console.log(room);
+      setActiveRoom(room);
     } catch (error) {
       console.log("error", error);
     }
