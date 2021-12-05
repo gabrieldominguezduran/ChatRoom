@@ -60,7 +60,7 @@ export default function Rooms() {
             className="dropdown-menu w-100"
             aria-labelledby="dropdownMenuButton2"
           >
-            {rooms.map((r) => {
+            {(rooms || []).map((r) => {
               return (
                 <li
                   key={r.id}
@@ -95,7 +95,7 @@ export default function Rooms() {
       <section className="card desktop col-md-12 col-lg-2">
         <div className="card-header  title">Rooms</div>
         <ul className="list-group list-group-flush">
-          {rooms.map((r) => {
+          {(rooms || []).map((r) => {
             return (
               <li
                 key={r.id}
