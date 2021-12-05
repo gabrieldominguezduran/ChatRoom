@@ -11,6 +11,7 @@ end
   get '/rooms' => 'welcome#load_rooms'
   post '/update_profile' => 'welcome#update_profile'
   post '/create_room' => 'welcome#create_room'
+  post '/create_msg' => 'welcome#create_msg'
 
   mount ActionCable.server => '/cable'
 end

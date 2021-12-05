@@ -1,27 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-location";
+import { UserContext } from "./UserContext";
 
 import profileIMg from "../../assets/images/profile_page";
 export default function Profile() {
-  const [user, setUser] = useState({
-    username: "",
-    email: "",
-  });
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    const url = "/profile.json";
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
-      setUser(data);
-    } catch (error) {
-      console.log("error", error);
-    }
-  };
+  const { user, setUser } = useContext(UserContext);
+  console.log(user, "profile");
 
   const onChangeHandler = (e) => {
     const value = e.target.value;

@@ -1,24 +1,63 @@
-# README
+## A Chat app with code editor integrated
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Prerequisites
 
-Things you may want to cover:
+The setups steps expect following tools installed on the system.
 
-* Ruby version
+- Ruby [3.0.2](https://www.ruby-lang.org/en/news/2019/12/25/ruby-2-7-0-released/)
+- Rails [6.1.4.1](https://rubygems.org/gems/rails/versions/6.0.2)
 
-* System dependencies
+#### This project is using webpacker for the React front-end
 
-* Configuration
+- [You can follow this instructions](https://edgeguides.rubyonrails.org/webpacker.html)
 
-* Database creation
+#### 1. Clone the repository
 
-* Database initialization
+```bash
+git clone https://github.com/gabrieldominguezduran/ChatRoom.git
+```
 
-* How to run the test suite
+#### Using GitHub CLI
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+gh repo clone gabrieldominguezduran/ChatRoom
+```
 
-* Deployment instructions
+#### 2. Install dependecies
 
-* ...
+Run the following commands to install all dependecies
+
+```ruby
+bundle install
+```
+
+```javascript
+yarn install
+```
+
+#### 3. Set up database
+
+This app uses postgresql mysql2 gem if you want to set up a different db you can add the new gem to the Gemfile and run:
+
+```ruby
+rails db:system:change --to=mysql2
+rails db:system:change --to=sqlite3
+rails db:system:change --to=oracle
+rails db:system:change --to=frontbase
+rails db:system:change --to=sqlserver
+rails db:system:change --to=jdbc
+```
+
+Then run the migrations to set up the db:
+
+```ruby
+rails db:migrate
+```
+
+#### 3. Start the Rails server
+
+```ruby
+rails s
+```
+
+And now you can visit: http://localhost:3000

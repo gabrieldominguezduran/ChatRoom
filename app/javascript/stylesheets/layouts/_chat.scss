@@ -14,12 +14,12 @@
 
   &__msg {
     border-radius: 15px;
-    background-color: $secondary-color;
+    background-color: #fbfbfb;
   }
 
   &__my-msg {
     border-radius: 15px;
-    background-color: #fbfbfb;
+    background-color: $secondary-color;
   }
 
   &__text {
@@ -28,5 +28,15 @@
     color: $primary-color;
     text-align: center;
     margin: 3rem auto;
+  }
+
+  &__body {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  &__form {
+    background-color: $secondary-color;
+    border-color: $primary-color;
   }
 }

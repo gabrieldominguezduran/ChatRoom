@@ -4,8 +4,10 @@ import Chat from "./chat/Chat";
 import Editor from "./chat/Editor";
 import Rooms from "./chat/Rooms";
 import { RoomContext } from "./RoomContext";
+
 export default function Home() {
-  const [activeRoom, setActiveRoom] = useState("");
+  const [activeRoom, setActiveRoom] = useState({});
+
   return (
     <section className="container">
       <main className="d-lg-flex justify-content-center">

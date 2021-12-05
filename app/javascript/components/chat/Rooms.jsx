@@ -2,9 +2,9 @@ import React, { useState, useEffect, useContext } from "react";
 import { RoomContext } from "../RoomContext";
 
 export default function Rooms() {
+  const { setActiveRoom } = useContext(RoomContext);
   const [rooms, setRooms] = useState([]);
   const [room, setRoom] = useState("");
-  const { setActiveRoom } = useContext(RoomContext);
 
   useEffect(() => {
     fetchRooms();
