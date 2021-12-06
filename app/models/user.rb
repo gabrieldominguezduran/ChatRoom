@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :rooms, foreign_key: "admin_id", class_name: "Room"
+  has_many :rooms, foreign_key: "admin_id", class_name: "Room", dependent: :destroy
 
   has_many :messages
 end

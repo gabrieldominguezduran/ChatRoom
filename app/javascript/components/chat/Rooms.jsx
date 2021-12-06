@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
-import { RoomContext } from "../RoomContext";
+import { ActiveRoomContext } from "../ActiveRoomContext";
+import { RoomsContext } from "../RoomsContext";
 
 export default function Rooms() {
-  const { setActiveRoom } = useContext(RoomContext);
-  const [rooms, setRooms] = useState([]);
+  const { setActiveRoom } = useContext(ActiveRoomContext);
+  const { rooms, setRooms } = useContext(RoomsContext);
   const [room, setRoom] = useState("");
 
   useEffect(() => {
@@ -39,9 +40,15 @@ export default function Rooms() {
     }
   };
 
-  const getRoomId = (id) => {
-    const room = rooms.find((r) => id === r.id);
-    setActiveRoom(room);
+  const getRoom = async (id) => {
+    const url = `/room/${id}.json`;
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setActiveRoom(data);
+    } catch (error) {
+      console.log("error", error);
+    }
   };
   return (
     <>
@@ -66,14 +73,14 @@ export default function Rooms() {
                   <li
                     key={r.id}
                     className="list-group-item text"
-                    onClick={() => getRoomId(r.id)}
+                    onClick={() => getRoom(r.id)}
                   >
                     {r.name}
                   </li>
                 );
               })
             ) : (
-              <li>No rooms yet</li>
+              <li className="list-group-item text">No rooms yet</li>
             )}
             <form className="d-flex flex-column justify-content-center">
               <div className="form-group">
@@ -105,14 +112,14 @@ export default function Rooms() {
                 <li
                   key={r.id}
                   className="list-group-item text"
-                  onClick={() => getRoomId(r.id)}
+                  onClick={() => getRoom(r.id)}
                 >
                   {r.name}
                 </li>
               );
             })
           ) : (
-            <li>No rooms yet</li>
+            <li className="list-group-item text">No rooms yet</li>
           )}
         </ul>
         <form className="d-flex flex-column justify-content-center">

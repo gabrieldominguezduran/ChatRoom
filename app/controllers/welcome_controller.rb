@@ -19,11 +19,17 @@ class WelcomeController < ApplicationController
     render json: rooms.as_json(:only => [:id, :admin_id, :name], :include => :messages)
   end
 
+  def load_single_room
+    room =  Room.find(params[:id])
+    render json: room.as_json(:only => [:id, :admin_id, :name], :include => :messages)
+  end
+
   def create_room
     room = Room.create!({
       :admin_id => current_user.id,
       :name => params[:room]
     })
+    
       rooms = Room.all
       render json: rooms.as_json(:only => [:id, :admin_id, :name], :include => :messages)
   end
@@ -35,9 +41,10 @@ class WelcomeController < ApplicationController
       :room_id => room.id,
       :body => params[:message]
     })
-      ActionCable.server.broadcast "room:#{room.id}", {room: room.as_json(:only => [:id, :admin_id, :name], :include => :messages)}
-    
-      render json: room.as_json(:only => [:id, :admin_id, :name], :include => :messages)
+     
+      ActionCable.server.broadcast "rooms", {rooms: Room.all.as_json(:only => [:id, :admin_id, :name], :include => :messages), room: Room.find(room.id).as_json(:only => [:id, :admin_id, :name], :include => :messages)}
+     
+      head :no_content
   end
 
   private

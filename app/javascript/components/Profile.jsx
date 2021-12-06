@@ -5,7 +5,6 @@ import { UserContext } from "./UserContext";
 import profileIMg from "../../assets/images/profile_page";
 export default function Profile() {
   const { user, setUser } = useContext(UserContext);
-  console.log(user, "profile");
 
   const onChangeHandler = (e) => {
     const value = e.target.value;

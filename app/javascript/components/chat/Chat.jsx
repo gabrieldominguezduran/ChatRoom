@@ -1,21 +1,26 @@
 import "channels";
 import React, { useContext, useState, useEffect } from "react";
-import { RoomContext } from "../RoomContext";
+import { ActiveRoomContext } from "../ActiveRoomContext";
 import { UserContext } from "../UserContext";
 import RoomChannel from "../../channels/room_channel";
+import { RoomsContext } from "../RoomsContext";
 
 export default function Chat() {
-  const { activeRoom, setActiveRoom } = useContext(RoomContext);
+  const { rooms, setRooms } = useContext(RoomsContext);
+  const { activeRoom, setActiveRoom } = useContext(ActiveRoomContext);
   const { user } = useContext(UserContext);
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    RoomChannel.received = (data) => setActiveRoom(data.room);
+    RoomChannel.received = (data) => {
+      console.log(data);
+      setRooms(data.rooms);
+      setActiveRoom(data.room);
+    };
   }, []);
 
   const createMessage = async (e, roomId) => {
     e.preventDefault();
-    setMessage("");
     const data = { roomId, message };
     const requestOptions = {
       method: "POST",
@@ -23,11 +28,8 @@ export default function Chat() {
       body: JSON.stringify(data),
     };
     try {
-      const response = await fetch(`/create_msg`, requestOptions);
-      const res = await response.json();
-      const room = res.find((id) => id == id);
-      console.log(room);
-      setActiveRoom(room);
+      await fetch(`/create_msg`, requestOptions);
+      setMessage("");
     } catch (error) {
       console.log("error", error);
     }
