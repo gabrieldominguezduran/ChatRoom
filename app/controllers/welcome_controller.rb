@@ -37,7 +37,7 @@ class WelcomeController < ApplicationController
       :body => params[:message]
     })
      
-      ActionCable.server.broadcast "rooms", {rooms: Room.all.as_json(:only => [:id, :admin_id, :name], :include => :messages), room: Room.find(room.id).as_json(:only => [:id, :admin_id, :name], :include => :messages)}
+      ActionCable.server.broadcast "rooms", {room: Room.find(room.id).as_json(:only => [:id, :admin_id, :name], :include => :messages)}
      
       head :no_content
   end

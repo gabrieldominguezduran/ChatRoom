@@ -3,18 +3,14 @@ import React, { useContext, useState, useEffect } from "react";
 import { ActiveRoomContext } from "../ActiveRoomContext";
 import { UserContext } from "../UserContext";
 import RoomChannel from "../../channels/room_channel";
-import { RoomsContext } from "../RoomsContext";
 
 export default function Chat() {
-  const { rooms, setRooms } = useContext(RoomsContext);
   const { activeRoom, setActiveRoom } = useContext(ActiveRoomContext);
   const { user } = useContext(UserContext);
   const [message, setMessage] = useState("");
 
   useEffect(() => {
     RoomChannel.received = (data) => {
-      console.log(data);
-      setRooms(data.rooms);
       setActiveRoom(data.room);
     };
   }, []);
