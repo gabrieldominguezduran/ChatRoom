@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { ActiveRoomContext } from "../ActiveRoomContext";
 import { RoomsContext } from "../RoomsContext";
 
-export default function Rooms() {
+export default function Rooms(props) {
   const { setActiveRoom } = useContext(ActiveRoomContext);
   const { rooms, setRooms } = useContext(RoomsContext);
   const [room, setRoom] = useState("");

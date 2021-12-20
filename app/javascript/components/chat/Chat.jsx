@@ -2,18 +2,20 @@ import "channels";
 import React, { useContext, useState, useEffect } from "react";
 import { ActiveRoomContext } from "../ActiveRoomContext";
 import { UserContext } from "../UserContext";
-import RoomChannel from "../../channels/room_channel";
 
-export default function Chat() {
-  const { activeRoom, setActiveRoom } = useContext(ActiveRoomContext);
+export default function Chat(props) {
+  const { activeRoom } = useContext(ActiveRoomContext);
   const { user } = useContext(UserContext);
   const [message, setMessage] = useState("");
+  const [room, setRoom] = useState({});
 
   useEffect(() => {
-    RoomChannel.received = (data) => {
-      setActiveRoom(data.room);
-    };
-  }, []);
+    if (props.updatedRoom && props.updatedRoom.id === activeRoom.id) {
+      setRoom(props.updatedRoom);
+    } else {
+      setRoom(activeRoom);
+    }
+  }, [activeRoom, props.updatedRoom]);
 
   const createMessage = async (e, roomId) => {
     e.preventDefault();
@@ -31,7 +33,7 @@ export default function Chat() {
     }
   };
 
-  const messagesList = (activeRoom.messages || []).map((msg) => {
+  const messagesList = (room.messages || []).map((msg) => {
     if (user.id === msg.user_id) {
       return (
         <div key={msg.id} className="d-flex flex-row justify-content-end mb-4">
@@ -66,10 +68,10 @@ export default function Chat() {
 
   return (
     <section className="chat col-md-12 col-lg-5 col-xl-4">
-      {Object.entries(activeRoom).length > 0 ? (
+      {Object.entries(room).length > 0 ? (
         <div className="card chat__container" id="chat1">
           <div className="chat__card card-header d-flex justify-content-center align-items-center p-3 text-white border-bottom-0">
-            <p className="mb-0 fw-bold chat__name">{activeRoom.name}</p>
+            <p className="mb-0 fw-bold chat__name">{room.name}</p>
           </div>
           <div className="card-body chat__body">{messagesList}</div>
           <div className="form-outline">
@@ -86,7 +88,7 @@ export default function Chat() {
                 <button
                   className="btn btn-default my-1"
                   type="button"
-                  onClick={(e) => createMessage(e, activeRoom.id)}
+                  onClick={(e) => createMessage(e, room.id)}
                 >
                   Send
                 </button>
