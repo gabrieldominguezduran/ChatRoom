@@ -41,14 +41,8 @@ export default function Rooms() {
   };
 
   const getRoom = async (id) => {
-    const url = `/room/${id}.json`;
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
-      setActiveRoom(data);
-    } catch (error) {
-      console.log("error", error);
-    }
+    const room = rooms.find((room) => room.id === id);
+    setActiveRoom(room);
   };
   return (
     <>

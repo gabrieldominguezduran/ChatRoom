@@ -19,11 +19,6 @@ class WelcomeController < ApplicationController
     render json: rooms.as_json(:only => [:id, :admin_id, :name], :include => :messages)
   end
 
-  def load_single_room
-    room =  Room.find(params[:id])
-    render json: room.as_json(:only => [:id, :admin_id, :name], :include => :messages)
-  end
-
   def create_room
     room = Room.create!({
       :admin_id => current_user.id,
