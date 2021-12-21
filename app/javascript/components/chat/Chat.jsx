@@ -12,10 +12,12 @@ export default function Chat(props) {
   useEffect(() => {
     if (props.updatedRoom && props.updatedRoom.id === activeRoom.id) {
       setRoom(props.updatedRoom);
-    } else {
-      setRoom(activeRoom);
     }
-  }, [activeRoom, props.updatedRoom]);
+  }, [props.updatedRoom]);
+
+  useEffect(() => {
+    setRoom(activeRoom);
+  }, [activeRoom]);
 
   const createMessage = async (e, roomId) => {
     e.preventDefault();

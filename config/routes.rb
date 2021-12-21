@@ -9,6 +9,7 @@ end
   get '/about' => 'home#about'
   get '/profile' => 'welcome#load_profile'
   get '/rooms' => 'welcome#load_rooms'
+  get '/room/:id' => 'welcome#load_single_room'
   post '/update_profile' => 'welcome#update_profile'
   post '/create_room' => 'welcome#create_room'
   post '/create_msg' => 'welcome#create_msg'
