@@ -39,14 +39,12 @@ export default function Chat(props) {
     if (user.id === msg.user_id) {
       return (
         <div key={msg.id} className="d-flex flex-row justify-content-end mb-4">
-          <div className="p-3 me-3 border chat__my-msg">
+          <div className="p-2 me-3 border chat__my-msg">
             <p className="small mb-0">{msg.body}</p>
           </div>
-          <img
-            className="chat__img"
-            src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-chat/ava2-bg.png"
-            alt="avatar 1"
-          />
+          <span className="badge chat__avatar bg-dark">
+            {`${msg.user.username[0].toUpperCase()}${msg.user.username[1]}`}
+          </span>
         </div>
       );
     } else {
@@ -55,12 +53,10 @@ export default function Chat(props) {
           key={msg.id}
           className="d-flex flex-row justify-content-start mb-4"
         >
-          <img
-            className="chat__img"
-            src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-chat/ava1-bg.png"
-            alt="avatar 1"
-          />
-          <div className="p-3 ms-3 chat__msg">
+          <span className="badge chat__avatar">
+            {`${msg.user.username[0].toUpperCase()}${msg.user.username[1]}`}
+          </span>
+          <div className="p-2 ms-3 chat__msg">
             <p className="small mb-0">{msg.body}</p>
           </div>
         </div>
