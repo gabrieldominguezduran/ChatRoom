@@ -1,15 +1,22 @@
 import React, { useState, useEffect, useContext } from "react";
 import { ActiveRoomContext } from "../ActiveRoomContext";
 import { RoomsContext } from "../RoomsContext";
+import { UserContext } from "../UserContext";
 
 export default function Rooms(props) {
-  const { setActiveRoom } = useContext(ActiveRoomContext);
+  const { user } = useContext(UserContext);
+  const { activeRoom, setActiveRoom } = useContext(ActiveRoomContext);
   const { rooms, setRooms } = useContext(RoomsContext);
   const [room, setRoom] = useState("");
+  const [notification, setNotification] = useState(null);
 
   useEffect(() => {
     fetchRooms();
   }, []);
+
+  useEffect(() => {
+    setNotification(true);
+  }, [props.updatedRoom]);
 
   const fetchRooms = async () => {
     const url = "/rooms.json";
@@ -41,6 +48,9 @@ export default function Rooms(props) {
   };
 
   const getRoom = async (id) => {
+    if (id === props.updatedRoom.id) {
+      setNotification(false);
+    }
     const url = `/room/${id}.json`;
     try {
       const response = await fetch(url);
@@ -50,6 +60,7 @@ export default function Rooms(props) {
       console.log("error", error);
     }
   };
+
   return (
     <>
       <section className="card mobile col-md-12 col-lg-2">
@@ -76,6 +87,11 @@ export default function Rooms(props) {
                     onClick={() => getRoom(r.id)}
                   >
                     {r.name}
+                    {r.id === props.updatedRoom.id &&
+                    props.updatedRoom.id !== activeRoom.id &&
+                    notification ? (
+                      <span className="badge bg-danger ms-2">New</span>
+                    ) : null}
                   </li>
                 );
               })
@@ -115,6 +131,11 @@ export default function Rooms(props) {
                   onClick={() => getRoom(r.id)}
                 >
                   {r.name}
+                  {r.id === props.updatedRoom.id &&
+                  props.updatedRoom.id !== activeRoom.id &&
+                  notification ? (
+                    <span className="badge bg-danger ms-2">New</span>
+                  ) : null}
                 </li>
               );
             })
