@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-location";
 import Chat from "./chat/Chat";
-import Editor from "./chat/Editor";
+import PlayGround from "./chat/PlayGround";
 import Rooms from "./chat/Rooms";
 import { ActiveRoomContext } from "./ActiveRoomContext";
 import { RoomsContext } from "./RoomsContext";
@@ -25,7 +25,7 @@ export default function Home() {
           <ActiveRoomContext.Provider value={{ activeRoom, setActiveRoom }}>
             <Rooms updatedRoom={updatedRoom} />
             <Chat updatedRoom={updatedRoom} />
-            <Editor />
+            <PlayGround />
           </ActiveRoomContext.Provider>
         </RoomsContext.Provider>
       </main>

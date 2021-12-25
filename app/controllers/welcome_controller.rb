@@ -21,15 +21,24 @@ class WelcomeController < ApplicationController
 
   def load_single_room
     room =  Room.find(params[:id])
-    render json: room.as_json(:only => [:id, :admin_id, :name], :include => [messages: {include: :user}])
+    render json: room.as_json(:only => [:id, :admin_id, :name], :include => [:play_ground, messages: {include: :user}])
   end
 
   def create_room
-    room = Room.create!({
-      :admin_id => current_user.id,
-      :name => params[:room]
-    })
-    
+
+    ActiveRecord::Base.transaction do 
+      room = Room.create!({
+        :admin_id => current_user.id,
+        :name => params[:room]
+      })
+  
+      PlayGround.create!({
+        :room_id => room.id,
+        :html_code => "",
+        :css_code => "",
+        :js_code => ""
+      })
+    end    
       rooms = Room.all
       render json: rooms.as_json(:only => [:id, :admin_id, :name], :include =>[messages: {include: :user}])
   end
@@ -42,9 +51,21 @@ class WelcomeController < ApplicationController
       :body => params[:message]
     })
      
-      ActionCable.server.broadcast "rooms", {room: Room.find(room.id).as_json(:only => [:id, :admin_id, :name], :include => [messages: {include: :user}])}
+      ActionCable.server.broadcast "rooms", {room: Room.find(room.id).as_json(:only => [:id, :admin_id, :name], :include => [ messages: {include: :user}])}
      
       head :no_content
+  end
+
+  def update_playground
+    playground = PlayGround.find(params[:play_ground][:id]) if params[:play_ground]
+    if playground
+      playground.update!({
+        :html_code => params[:play_ground][:html_code],
+        :css_code => params[:play_ground][:css_code],
+        :js_code => params[:play_ground][:js_code]
+      })
+    end
+    head :no_content
   end
 
   private

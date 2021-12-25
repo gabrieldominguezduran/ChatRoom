@@ -1,3 +1,33 @@
 .editor {
-  height: 100vh;
+  @include flex;
+
+  &__playGround {
+    height: 100%;
+    @media (max-width: 992px) {
+      display: none;
+    }
+  }
+  &__title {
+    font-family: Poppins-Bold;
+    text-align: center;
+    border: 1px solid $bg-color;
+    border-radius: 10px;
+    padding: 0.5rem;
+    margin: 5rem 0.5rem;
+  }
+
+  &__selector {
+    @include flex;
+    flex-direction: row;
+    font-family: Poppins-Bold;
+  }
+
+  &__btn {
+    background-color: $primary-color;
+    color: $bg-color;
+  }
+
+  &__iframe {
+    font-family: PoiretOne-Regular;
+  }
 }
