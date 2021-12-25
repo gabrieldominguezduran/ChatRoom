@@ -10,6 +10,8 @@ import "channels";
 import "bootstrap";
 import "../stylesheets/application";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import "codemirror/lib/codemirror.css";
+import "codemirror/theme/material.css";
 
 Rails.start();
 Turbolinks.start();
