@@ -10,6 +10,7 @@ export default function Editor(props) {
   function handleChange(editor, data, value) {
     onChange(value);
   }
+
   return (
     <CodeMirror
       value={value}

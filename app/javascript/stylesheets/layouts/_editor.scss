@@ -31,3 +31,15 @@
     font-family: PoiretOne-Regular;
   }
 }
+
+.editor .CodeMirror-scroll {
+  overflow: hidden !important;
+  width: fit-content;
+  padding: 0;
+}
+
+/* hide the scrollbars */
+.editor .CodeMirror-vscrollbar,
+.editor .CodeMirror-hscrollbar {
+  display: none !important;
+}
