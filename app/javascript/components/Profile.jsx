@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-location";
 import { UserContext } from "./UserContext";
 
-import profileIMg from "../../assets/images/profile_page";
+import profileIMg from "../../assets/images/profile_page.svg";
 export default function Profile() {
   const { user, setUser } = useContext(UserContext);
 
@@ -39,6 +39,7 @@ export default function Profile() {
           <div className="form-group">
             <label htmlFor="username">Username</label>
             <input
+              id="username"
               className="form-control profile__input"
               type="text"
               name="username"
@@ -50,6 +51,7 @@ export default function Profile() {
           <div className="form-group">
             <label htmlFor="email">Email</label>
             <input
+              id="email"
               className="form-control profile__input"
               type="email"
               name="email"

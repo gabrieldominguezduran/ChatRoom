@@ -10,8 +10,6 @@
   &__title {
     font-family: Poppins-Bold;
     text-align: center;
-    border: 1px solid $bg-color;
-    border-radius: 10px;
     padding: 0.5rem;
     margin: 5rem 0.5rem;
   }
@@ -38,7 +36,6 @@
   padding: 0;
 }
 
-/* hide the scrollbars */
 .editor .CodeMirror-vscrollbar,
 .editor .CodeMirror-hscrollbar {
   display: none !important;

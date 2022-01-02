@@ -6,5 +6,5 @@ class User < ApplicationRecord
 
   has_many :rooms, foreign_key: "admin_id", class_name: "Room", dependent: :destroy
 
-  has_many :messages
+  has_many :messages, dependent: :destroy
 end
