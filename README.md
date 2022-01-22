@@ -39,7 +39,7 @@ yarn install
 
 #### 3. Set up database
 
-This app uses postgresql mysql2 gem if you want to set up a different db you can add the new gem to the Gemfile and run:
+This app uses postgresql gem if you want to set up a different db you can add the new gem to the Gemfile and run:
 
 ```ruby
 rails db:system:change --to=mysql2
