@@ -1,7 +1,5 @@
 ## A Chat app with code editor integrated
 
-- See it live -> [ChatRoom](https://chatroomtheapp.herokuapp.com)
-
 ### Prerequisites
 
 The setups steps expect following tools installed on the system.
